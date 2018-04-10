@@ -39,11 +39,11 @@ var map = L.mapbox.map('map', 'mapbox.emerald', {
 maxZoom: 20
 })
 // initial location
-map.setView([43.60426, 1.44367], 14);
+map.setView([53.3351, -6.2493], 14);
 // add plugins
 L.control.fullscreen().addTo(map);
 L.control.locate().addTo(map);
-omnivore.csv("{{ url_for('static', filename='assets/files/Toulouse.csv') }}", null, L.mapbox.featureLayer())
+omnivore.csv("{{ url_for('static', filename='users/paddytuffy/bikesproject/static/data/dublin.csv') }}", null, L.mapbox.featureLayer())
 .on('ready', function(layer) {
 this.eachLayer(function(marker) {
 var info = marker.toGeoJSON().properties

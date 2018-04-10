@@ -30,7 +30,7 @@ def information(city):
     # Collect JSON data
     data = stations_list(city)
     # Convert it to a dataframe
-    df = pd.io.json.read_json(data)
+    df = pd.DataFrame(data)
     # The positions are embedded so they have to be extracted
     positions = df.position.apply(pd.Series)
     df['latitude'] = positions['lat']
