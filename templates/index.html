@@ -2,9 +2,12 @@
 <html>
     <head>
         <meta charset='utf-8'/>
+        <!-- setting character set of the page-->
         <title>Bike stations</title>
+        <!-- setting the title of the page-->
         <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
         <!-- Leaflet JS -->
+         <!-- setting the title of the page-->
         <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
 		<!-- Leaflet CSS -->
 		<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css' rel='stylesheet'/>
@@ -43,7 +46,7 @@ map.setView([53.3351, -6.2493], 14);
 // add plugins
 L.control.fullscreen().addTo(map);
 L.control.locate().addTo(map);
-omnivore.csv("{{ url_for('static', filename='users/paddytuffy/bikesproject/static/data/dublin.csv') }}", null, L.mapbox.featureLayer())
+omnivore.csv("{{ url_for('static', filename='data/dublin.csv') }}", null, L.mapbox.featureLayer())
 .on('ready', function(layer) {
 this.eachLayer(function(marker) {
 var info = marker.toGeoJSON().properties
