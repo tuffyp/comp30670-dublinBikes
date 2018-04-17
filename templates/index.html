@@ -5,49 +5,130 @@
         <!-- setting character set of the page-->
         <title>Bike stations</title>
         <!-- setting the title of the page-->
+        
         <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+        
         <!-- Leaflet JS -->
          <!-- setting the title of the page-->
+        
         <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
+        
 		<!-- Leaflet CSS -->
 		<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css' rel='stylesheet'/>
+        
 		<!-- Font-awesome -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        
+        
         <!-- Leaflet vector markers -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/Leaflet.vector-markers.css') }}"/>
         <script src="{{ url_for('static', filename='js/Leaflet.vector-markers.js') }}"></script>
+        
+        
         <!-- Leaflet omnivore -->
         <!-- this is the Map -->
         <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
-        <style>
-            body { margin:0; padding:0; }
-            #map { position:absolute; top:0; bottom:0; width:100%; }
-        </style>
+        
+        
+        <!-- stylesheet-->
+        <link rel="stylesheet" href="static/css/styles.css">
+        
+         <script src= 'https://api.mapbox.com/optimized-trips/v1/mapbox/driving/-122.42,37.78;-122.45,37.91;-122.48,37.73?access_token=pk.eyJ1IjoibGVtYXgiLCJhIjoidnNDV1kzNCJ9.iH26jLhEuimYd6vLOO6v1g'></script>
+        
+        
     </head>
-    <body>
+    
+    
+    
+    
+<body>
+        
+        
 <!-- Fullscreen plugin -->
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.4/Leaflet.fullscreen.min.js'></script>
+    
 <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.4/leaflet.fullscreen.css' rel='stylesheet' />
+    
 <!-- User location plugin -->
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.42.0/L.Control.Locate.min.js'></script>
+    
 <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.42.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
+
+<!-- Mapbox Directions Plug in-->
+    
+<script src='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.4.0/mapbox.directions.js'></script>
+    
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.4.0/mapbox.directions.css' type='text/css' />
+    
+
+    
+<!-- Map Div-->        
 <div id = 'map'></div>
+    
+<!-- Weather Div-->         
+<div id="openweathermap-widget-15" class ='openweathermap'></div>
+
+<div id='inputs'></div>
+<div id='errors'></div>
+<div id='directions'>
+  <div id='routes'></div>
+  <div id='instructions'></div>
+</div>
+    
+    
+<!-- Weather Widget Script-->   
+    
 <script>
+    window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = []; 
+    
+    window.myWidgetParam.push({id: 15,cityid: '2964574',appid: 'b1384a2e533bab16cbf2ad9f4c439779',units: 'metric',containerid: 'openweathermap-widget-15',  });
+    
+    (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+                 
+    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
+</script>
+        
+    
+    
+<script>
+    
 // transform a value from 0 to 1 into a color
+    
 function getColor(value){
 	var hue=((1-value)*120).toString(10);
 	return ["hsl(",hue,",80%,60%)"].join("");
 }
+    
 L.mapbox.accessToken = 'pk.eyJ1IjoibGVtYXgiLCJhIjoidnNDV1kzNCJ9.iH26jLhEuimYd6vLOO6v1g';
 var map = L.mapbox.map('map', 'mapbox.emerald', {
 maxZoom: 20
 })
+
 // initial location
 map.setView([53.3351, -6.2493], 14);
+
+var directions = L.mapbox.directions();
+
+var directionsLayer = L.mapbox.directions.layer(directions)
+    .addTo(map);
+
+var directionsInputControl = L.mapbox.directions.inputControl('inputs', directions)
+    .addTo(map);
+
+var directionsErrorsControl = L.mapbox.directions.errorsControl('errors', directions)
+    .addTo(map);
+
+var directionsRoutesControl = L.mapbox.directions.routesControl('routes', directions)
+    .addTo(map);
+
+var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
+    .addTo(map);
+
 // add plugins
 L.control.fullscreen().addTo(map);
 L.control.locate().addTo(map);
 omnivore.csv("{{ url_for('static', filename='data/dublin.csv') }}", null, L.mapbox.featureLayer())
+    
 .on('ready', function(layer) {
 this.eachLayer(function(marker) {
 var info = marker.toGeoJSON().properties
@@ -60,9 +141,12 @@ var icon = L.VectorMarkers.icon({
 	markerColor: getColor(1 - bikes / total),
 	iconColor: getColor(1 - stands / total)
 });
+    
 // change the icons for each point on the map
 marker.setIcon(icon)
+    
 // create popup text to display the date, city, and country of the GPS data point
+    
 var popupText =
 marker.toGeoJSON().properties.name +
 '</br>' +
@@ -73,10 +157,13 @@ marker.toGeoJSON().properties.name +
 'Updated @ ' + '<b>' + update + '</b>';
 // bind the popup to each icon
 marker.bindPopup(popupText);
+    
 });
 })
 .addTo(map);
 </script>
+    
+    
 </body>
 </html>
         
