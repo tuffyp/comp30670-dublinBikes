@@ -32,9 +32,13 @@ body {
 }
 
 .openweathermap {
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
+    width: 3%;
+}
+.openweathermap .widget-right weather-right--type1 widget-right--brown{
+    width:33.3333% !important;
 }
 
 #inputs,
@@ -49,7 +53,7 @@ body {
 #inputs {
     z-index: 10;
     top: 10px;
-    left: 10px;
+    left: 60px;
 }
 
 #directions {
