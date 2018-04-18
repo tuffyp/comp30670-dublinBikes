@@ -24,7 +24,7 @@ The project functionality is tested on two different machines with different OS.
 
 * **Patrick Tuffy** 
 * **Emmanouil Chondrakis** 
-* **Abishek Sam** 
+* **Abishek Sambandh** 
 
 ### Dependencies
 
