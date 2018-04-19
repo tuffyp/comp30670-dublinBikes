@@ -38,8 +38,8 @@ Flask 0.10.1
 
 Download the project as zip.
 Extract to a preferred location.
-Open a command window and run ...
-Open another command window and run ...
+Open a command window and run serve.py
+Open another command window and run update.py
 Open a browser and type localhost:5000
 Enjoy cycling !
 
