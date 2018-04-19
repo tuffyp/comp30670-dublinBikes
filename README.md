@@ -1,6 +1,6 @@
 # DUBLIN BIKES
 
-This project is the implementation of a website about dublin bikes. Dublin bikes is a very popular
+This project is the implementation of a website about dublin bikes. Dublin bikes is a very popular 
 means of travel in Dublin since it allows ease of travel to many users that enjoy bicycle riding.
 The website provides live information about the availabilty of bikes and stands at every single station
 in the city of Dublin.
