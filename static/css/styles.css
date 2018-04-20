@@ -40,6 +40,24 @@ body {
 .openweathermap .widget-right weather-right--type1 widget-right--brown{
     width:33.3333% !important;
 }
+/*#chart {
+    position: block;
+    left: 0;
+    bottom: 0;
+    width: 3%;
+    z-index: 10;
+    }
+#chart chartjs-size-monitor{
+    display:block !important;
+}
+#chart myChart,{
+    position:block;
+}
+
+canvas{
+    display:block;
+}
+*/
 
 #inputs,
 #errors,
