@@ -31,6 +31,6 @@ scikit-learn==0.19.1
 scipy==1.0.0
 six==1.11.0
 -e git+https://github.com/tuffyp/systeminfo.git@3117234b13ba5f908e5cc346f5994a122db0c1c8#egg=systeminfo
-urllib3==1.22
+urllib3==1.26.5
 Werkzeug==0.14.1
 whichcraft==0.4.1
